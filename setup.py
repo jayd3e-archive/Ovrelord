@@ -1,7 +1,15 @@
 from setuptools import setup
 
+entry_points = """
+    [paste.app_factory]
+    main = overlord:main
+"""
+
 requires = [
-    'retools'
+    'retools',
+    'pyramid',
+    'waitress',
+    'pyramid_debugtoolbar'
     ]
 
 setup(name='overlord',
@@ -9,4 +17,5 @@ setup(name='overlord',
       description='Overlord',
       packages=['overlord'],
       install_requires=requires,
+      entry_points=entry_points
       )
