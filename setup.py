@@ -7,7 +7,7 @@ entry_points = """
 
 requires = [
     'retools',
-    'pyramid',
+    'pyramid==1.3',
     'waitress',
     'pyramid_debugtoolbar'
     ]

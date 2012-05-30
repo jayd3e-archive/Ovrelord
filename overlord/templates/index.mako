@@ -1,4 +1,4 @@
-<%inherit file="../layouts/base.mako">
+<%inherit file="layouts/base.mako" />
 
 <%def name="body()">
 

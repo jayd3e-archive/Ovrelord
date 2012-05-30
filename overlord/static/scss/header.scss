@@ -1,0 +1,28 @@
+#header {
+    height: 46px;
+    width: 100%;
+    @include gradient(#323232, black);
+
+    #main_nav {
+        padding-left: 10px;
+        display: block;
+        overflow: auto;
+
+        li {
+            float: left;
+
+            > a {
+                color: #CCC;
+                text-decoration: none;
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 45px;
+                display: block;
+
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+/*
+*
+* Everything dealing with typography.
+*
+*/
+
+h1, h2, h3, h4, h5, h6 {
+    color: $overlord-headings-color;
+    font-family: $overlord-sans-font-family;
+    font-weight: $overlord-headings-font-weight;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h6 {
+    font-size: 14px;
+}
+
+span {
+    @include baseFont;
+    line-height: $overlord-base-font-size + 3px;
+}
+
+p {
+    @include baseFont;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    line-height: $overlord-base-font-size + 3px;
+}
+
+a {
+    text-decoration: none;
+    font-size: $overlord-base-font-size;
+    color: $overlord-link-color;
+    font-family: $overlord-sans-font-family;
+    cursor: pointer;
+}
+
+pre {
+    line-height: $overlord-base-font-size + 3px;
+    border: 1px solid #DDD;
+    padding: 10px;
+    background-color: #FAFAFA;
+}
