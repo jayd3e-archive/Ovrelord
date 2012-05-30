@@ -16,7 +16,7 @@ var overlord = {
 
 
 $(function() {
-    app = overlord.app;
+    var app = overlord.app;
 
     /*
     *
@@ -24,13 +24,21 @@ $(function() {
     *
     */
 
-    router = Backbone.Router({
+    Cache = overlord.module("cache");
+
+    var Router = Backbone.Router.extend({
+
         routes : {
-            "#cache": "cache"
+            "cache": "cache"
         },
+
         cache: function() {
             $("#page").empty();
-            new MainView();
+            new Cache.Views.MainView();
         }
+
     });
+
+    app.router = new Router();
+    Backbone.history.start();
 });

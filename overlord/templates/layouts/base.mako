@@ -18,5 +18,9 @@
         <script language="javascript" type="text/javascript" src="/static/js/lib/handlebars.js"></script>
         <script language="javascript" type="text/javascript" src="/static/js/lib/underscore.js"></script>
         <script language="javascript" type="text/javascript" src="/static/js/lib/backbone.js"></script>
+
+        <!-- APP -->
+        <script language="javascript" type="text/javascript" src="/static/js/index.js"></script>
+        <script language="javascript" type="text/javascript" src="/static/js/modules/cache.js"></script>
     </body>
 </html>
