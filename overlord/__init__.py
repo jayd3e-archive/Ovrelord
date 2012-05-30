@@ -1,8 +1,6 @@
 from pyramid.config import Configurator
 from pyramid.httpexceptions import HTTPNotFound
-from pyramid.httpexceptions import HTTPForbidden
 from overlord.exceptions import not_found
-from overlord.exceptions import forbidden
 from overlord.resources import Site
 
 
@@ -26,9 +24,6 @@ def main(global_config, **settings):
                     context=HTTPNotFound,
                     permission='__no_permission_required__',
                     renderer='overlord:templates/exceptions/not_found.mako')
-    config.add_view(forbidden,
-                    context=HTTPForbidden,
-                    permission='__no_permission_required__')
 
     config.scan('overlord')
     return config.make_wsgi_app()
