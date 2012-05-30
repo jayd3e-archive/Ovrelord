@@ -16,6 +16,7 @@ def main(global_config, **settings):
 
     #View Root Routes
     config.add_route('index', '/')
+    config.add_route('regions', '/regions')
 
     #View Action Routes
 
