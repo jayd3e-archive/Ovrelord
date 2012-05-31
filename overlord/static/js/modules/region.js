@@ -1,7 +1,7 @@
 (function(Region) {
 
-    var reply_source = $("#region").html();
-    var reply_template = Handlebars.compile(reply_source);
+    var region_source = $("#region").html();
+    var region_template = Handlebars.compile(region_source);
 
     Region.Model = Backbone.Model.extend({
 
@@ -21,8 +21,8 @@
         initialize: function() {
             that = this;
             regions.fetch({success: function() {
-                $.each(regions.toJSON(), function(index, region) {
-                    var model = new Region.Model(region);
+                regions.each(function(region) {
+                    var model = new Region.Model(region.toJSON());
                     var region_view = new Region.Views.RegionView({model: model});
                     that.$el.append(region_view.el);
                 });
@@ -40,7 +40,7 @@
         },
 
         render: function() {
-            var template = reply_template(this.model.toJSON());
+            var template = region_template(this.model.toJSON());
             this.$el.html(template);
         }
     });

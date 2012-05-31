@@ -16,6 +16,20 @@
 
         <script id="region" type="handlebars-template">
             <h1>{{ name }}</h1>
+            {{#each namespaces}}
+                <h2>{{ name }}</h2>
+                <table>
+                {{#each keys}}
+                    <tr>
+                        <td>{{ name }}</td>
+                        <td>{{ misses }}</td>
+                        <td>{{ hits }}</td>
+                        <td>{{ value }}</td>
+                        <td>{{ created }}</td>
+                    </tr>
+                {{/each}}
+                </table>
+            {{/each}}
         </script>
 
         <script language="javascript" type="text/javascript" src="/static/js/lib/jquery-1.7.1.js"></script>
