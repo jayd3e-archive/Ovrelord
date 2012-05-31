@@ -18,6 +18,7 @@ def main(global_config, **settings):
     config.add_route('index', '/')
     config.add_route('regions', '/regions')
     config.add_route('queues', '/queues')
+    config.add_route('queued', '/queues/{name}')
     config.add_route('workers', '/workers')
 
     #View Action Routes

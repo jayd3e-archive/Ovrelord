@@ -46,12 +46,18 @@ def regions(request):
 @view_config(route_name="queues", renderer="json")
 def queues(request):
     r = redis.Redis()
-    queues = r.smembers("retools:queues")
-
-    for queue in queues:
-        queues_json = [json.loads(q) for q in r.lrange("retools:queue:" + queue, 0, -1)]
+    queues_json = {"id": q for q in list(r.smembers("retools:queues"))}
 
     return queues_json
+
+
+@view_config(route_name="queued", renderer="json")
+def queued(request):
+    r = redis.Redis()
+    name = request.matchdict['name']
+    queued_jobs_json = [json.loads(q) for q in r.lrange("retools:queue:" + name, 0, -1)]
+
+    return queued_jobs_json
 
 
 @view_config(route_name="workers", renderer="json")

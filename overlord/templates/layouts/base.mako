@@ -33,7 +33,7 @@
         </script>
 
         <script id="queue" type="handlebars-template">
-            <h2>asdfasfd</h2>
+            <a href="#queues/{{ id }}">{{ id }}</a>
         </script>
 
         <script language="javascript" type="text/javascript" src="/static/js/lib/jquery-1.7.1.js"></script>

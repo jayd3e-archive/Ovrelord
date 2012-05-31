@@ -20,7 +20,7 @@
             queues.fetch({success: function() {
                 queues.each(function(queue) {
                     var model = new Queue.Model(queue.toJSON());
-                    var queue_view = new Region.Views.QueueView({model: model});
+                    var queue_view = new Queue.Views.QueueView({model: model});
                     that.$el.append(queue_view.el);
                 });
             }});
@@ -39,6 +39,17 @@
             var template = queue_template(this.model.toJSON());
             this.$el.html(template);
         }
+    });
+
+    Queue.Views.MainView = Backbone.View.extend({
+        el: $("#page"),
+
+        initialize: function() {
+            this.$el.empty();
+            queue_list = new Queue.Views.QueueListView();
+            this.$el.append(queue_list.el);
+        }
+
     });
 
 })(overlord.module("queue"));

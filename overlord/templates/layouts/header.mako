@@ -1,10 +1,10 @@
 <%def name="header()">
     <ul id="main_nav" class="container">
         <li>
-            <a href="#cache">Cache</a>
+            <a href="#overview">Overview</a>
         </li>
         <li>
-            <a href="#queue">Queue</a>
+            <a href="#cache">Cache</a>
         </li>
     </ul>
 </%def>
