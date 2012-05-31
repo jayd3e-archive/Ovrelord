@@ -50,4 +50,7 @@ data
 *.swo
 *.buildpath
 *.pydevproject
+*-ck.js
+env/
+overlord/static/css/
 

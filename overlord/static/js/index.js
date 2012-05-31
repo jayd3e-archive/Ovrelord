@@ -25,16 +25,23 @@ $(function() {
     */
 
     Cache = overlord.module("cache");
+    Overview = overlord.module("overview");
 
     var Router = Backbone.Router.extend({
 
         routes : {
-            "cache": "cache"
+            "cache": "cache",
+            "overview": "overview"
         },
 
         cache: function() {
             $("#page").empty();
             new Cache.Views.MainView();
+        },
+
+        overview: function() {
+            $("#page").empty();
+            new Overview.Views.MainView();
         }
 
     });

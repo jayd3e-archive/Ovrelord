@@ -1,4 +1,5 @@
 import redis
+import json
 from retools.cache import CacheKey
 from pyramid.view import view_config
 
@@ -40,3 +41,26 @@ def regions(request):
         regions_json.append(region_json)
 
     return regions_json
+
+
+@view_config(route_name="queues", renderer="json")
+def queues(request):
+    r = redis.Redis()
+    queues = r.smembers("retools:queues")
+
+    for queue in queues:
+        queues_json = [json.loads(q) for q in r.lrange("retools:queue:" + queue, 0, -1)]
+
+    return queues_json
+
+
+@view_config(route_name="workers", renderer="json")
+def workers(request):
+    r = redis.Redis()
+    workers = r.smembers("retools:workers")
+
+    for worker in workers:
+        worker_str = r.get("retools:worker:" + worker)
+        worker_json = json.loads(worker_str)
+
+    return worker_json

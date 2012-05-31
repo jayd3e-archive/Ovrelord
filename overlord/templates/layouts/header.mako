@@ -3,5 +3,8 @@
         <li>
             <a href="#cache">Cache</a>
         </li>
+        <li>
+            <a href="#queue">Queue</a>
+        </li>
     </ul>
 </%def>
