@@ -15,20 +15,26 @@ def regions(request):
 
     regions_json = []
     for region in regions:
-        region_json = {}
+        region_json = {"namespaces": [], "name": ""}
         namespaces = r.smembers("retools:" + region + ":namespaces")
 
         for namespace in namespaces:
-            region_json[namespace] = {}
+            namespace_json = {"keys": [], "name": namespace}
             keys = r.smembers("retools:" + region + ":" + namespace + ":keys")
 
             for key in keys:
                 retools_vals = r.hgetall("retools:%s:%s:%s" % (region, namespace, key))
                 keys = CacheKey(region, namespace, key)
-                region_json[namespace][key] = {"value": retools_vals['value'],
-                                                        "created": retools_vals['created'],
-                                                        "hits": r.get(keys.redis_hit_key),
-                                                        "misses": r.get(keys.redis_miss_key)}
+
+                key_json = {"name": key,
+                            "value": retools_vals['value'],
+                            "created": retools_vals['created'],
+                            "hits": r.get(keys.redis_hit_key),
+                            "misses": r.get(keys.redis_miss_key)}
+
+                namespace_json["keys"].append(key_json)
+
+            region_json["namespaces"].append(namespace_json)
 
         region_json["name"] = region
         regions_json.append(region_json)

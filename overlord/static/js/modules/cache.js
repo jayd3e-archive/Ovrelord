@@ -1,9 +1,14 @@
 (function(Cache) {
 
+    Region = overlord.module("region");
+
     Cache.Views.MainView = Backbone.View.extend({
+        el: $("#page"),
 
-        events: {
-
+        initialize: function() {
+            this.$el.empty();
+            region_list = new Region.Views.RegionListView();
+            this.$el.append(region_list.el);
         }
 
     });
