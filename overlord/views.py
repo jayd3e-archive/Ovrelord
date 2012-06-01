@@ -57,7 +57,7 @@ def queued(request):
     name = request.matchdict['name']
     queued_jobs_json = [json.loads(q) for q in r.lrange("retools:queue:" + name, 0, -1)]
 
-    return queued_jobs_json
+    return {'id': name, 'jobs': queued_jobs_json}
 
 
 @view_config(route_name="workers", renderer="json")

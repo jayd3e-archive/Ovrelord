@@ -26,12 +26,14 @@ $(function() {
 
     Cache = overlord.module("cache");
     Overview = overlord.module("overview");
+    Queue = overlord.module("queue");
 
     var Router = Backbone.Router.extend({
 
         routes : {
             "cache": "cache",
-            "overview": "overview"
+            "overview": "overview",
+            "queues/:queue": "queue"
         },
 
         cache: function() {
@@ -42,6 +44,13 @@ $(function() {
         overview: function() {
             $("#page").empty();
             new Overview.Views.MainView();
+        },
+
+        queue: function(queue) {
+            $("#page").empty();
+            attrs = {id: queue};
+            queue = new Queue.Model(attrs);
+            new Queue.Views.MainView({queue: queue});
         }
 
     });
