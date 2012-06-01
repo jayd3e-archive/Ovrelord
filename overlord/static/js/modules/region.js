@@ -31,4 +31,18 @@
 
     });
 
+    Region.Views.RegionView = Backbone.View.extend({
+        tagName: "div",
+        className: "region",
+
+        initialize: function() {
+            this.render();
+        },
+
+        render: function() {
+            var template = region_template(this.model.toJSON());
+            this.$el.html(template);
+        }
+    });
+
 })(overlord.module("region"));
