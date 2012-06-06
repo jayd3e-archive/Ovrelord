@@ -46,7 +46,10 @@ def regions(request):
 @view_config(route_name="queues", renderer="json")
 def queues(request):
     r = redis.Redis()
-    queues_json = {"id": q for q in list(r.smembers("retools:queues"))}
+
+    queues_json = []
+    for q in list(r.smembers("retools:queues")):
+        queues_json.append({"id": q})
 
     return queues_json
 

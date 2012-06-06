@@ -23,6 +23,7 @@
 
         initialize: function() {
             that = this;
+            that.id = "2";
             queues.fetch({success: function() {
                 queues.each(function(queue) {
                     var model = new Queue.Model(queue.toJSON());

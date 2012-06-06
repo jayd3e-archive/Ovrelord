@@ -21,6 +21,7 @@
 
         initialize: function() {
             that = this;
+            that.id = "1";
             workers.fetch({success: function() {
                 workers.each(function(worker) {
                     var model = new Worker.Model(worker.toJSON());
