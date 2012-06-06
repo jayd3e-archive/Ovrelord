@@ -55,7 +55,17 @@ def queues(request):
 def queued(request):
     r = redis.Redis()
     name = request.matchdict['name']
-    queued_jobs_json = [json.loads(q) for q in r.lrange("retools:queue:" + name, 0, -1)]
+    queued_jobs_json = []
+    for q in r.lrange("retools:queue:" + name, 0, -1):
+        kwargs = []
+        q = json.loads(q)
+        for key, value in q['kwargs'].items():
+            kwargs.append({'key': key, 'value': value})
+
+        queued_job = {'job': q['job'],
+                      'job_id': q['job_id'],
+                      'kwargs': kwargs}
+        queued_jobs_json.append(queued_job)
 
     return {'id': name, 'jobs': queued_jobs_json}
 
@@ -65,8 +75,10 @@ def workers(request):
     r = redis.Redis()
     workers = r.smembers("retools:workers")
 
+    workers_json = []
     for worker in workers:
         worker_str = r.get("retools:worker:" + worker)
         worker_json = json.loads(worker_str)
+        workers_json.append(worker_json)
 
-    return worker_json
+    return workers_json

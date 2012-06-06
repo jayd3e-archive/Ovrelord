@@ -15,7 +15,7 @@
         </article>
 
         <script id="region" type="handlebars-template">
-            <h1>{{ name }}</h1>
+            <h2>{{ name }}</h2>
             {{#each namespaces}}
                 <h2>{{ name }}</h2>
                 <table>
@@ -32,19 +32,62 @@
             {{/each}}
         </script>
 
+        <script id="queue_list" type="handlebars-template">
+            <h2>Queues</h2>
+            <div class="info">The list below contains all the registered queues with the number of jobs currently in the queue.
+                Select a queue from above to view all jobs currently pending on the queue.</div>
+            <table class="queue_table">
+                <tr>
+                    <th>name</th>
+                    <tH>jobs</th>
+                </tr>
+            </table>
+        </script>
+
         <script id="condensed_queue" type="handlebars-template">
-            <a href="#queues/{{ id }}">{{ id }}</a>
+            <td><a href="#queues/{{ id }}">{{ id }}</a></td>
+            <td></td>
         </script>
 
         <script id="queue" type="handlebars-template">
-            <h2>{{ id }}</h2>
+            <h2>Pending jobs on {{ id }}</h2>
+            <div class="info">Showing 0 of 0 jobs</div>
             <table>
+            <tr>
+                <th>class</th>
+                <th>args</th>
+                <th>job id</th>
+            </tr>
             {{#each jobs}}
                 <tr>
                     <td>{{ job }}</td>
+                    <td>
+                    {{#each kwargs}}
+                        {{ key }}: {{ value }}
+                    {{/each}}
+                    </td>
+                    <td>{{ job_id }}</td>
                 </tr>
             {{/each}}
             </table>
+        </script>
+
+        <script id="worker_list" type="handlebars-template">
+            <h2>0 of 2 Workers Working</h2>
+            <div class="info">The list below contains all workers which are currently running a job.</div>
+            <table class="worker_table">
+                <tr>
+                    <th>queue</th>
+                    <th>job_id</th>
+                    <th>run at</th>
+                </tr>
+            </table>
+        </script>
+
+        <script id="condensed_worker" type="handlebars-template">
+            <td>{{ queue }}</td>
+            <td>{{ payload.job_id }}</td>
+            <td>{{ run_at }}</td>
         </script>
 
         <script language="javascript" type="text/javascript" src="/static/js/lib/jquery-1.7.1.js"></script>

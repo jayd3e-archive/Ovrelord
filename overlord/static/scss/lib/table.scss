@@ -1,0 +1,19 @@
+table {
+    min-width: 600px;
+
+    tr {
+
+        td, th {
+            border: 1px solid #CCC;
+            @include baseFont;
+            padding: 4px;
+            text-align: left;
+        }
+
+        th {
+
+            text-transform: capitalize;
+            background: #EFEFEF;
+        }
+    }
+}

@@ -1,5 +1,7 @@
 (function(Queue) {
 
+    var queue_list_source = $("#queue_list").html();
+    var queue_list_template = Handlebars.compile(queue_list_source);
     var condensed_queue_source = $("#condensed_queue").html();
     var condensed_queue_template = Handlebars.compile(condensed_queue_source);
     var queue_source = $("#queue").html();
@@ -17,20 +19,28 @@
     var queues = new QueueList();
 
     Queue.Views.QueueListView = Backbone.View.extend({
+        className: "queues",
+
         initialize: function() {
             that = this;
             queues.fetch({success: function() {
                 queues.each(function(queue) {
                     var model = new Queue.Model(queue.toJSON());
                     var queue_view = new Queue.Views.CondensedQueueView({model: model});
-                    that.$el.append(queue_view.el);
+                    that.$(".queue_table tbody").append(queue_view.el);
                 });
             }});
+        },
+
+        render: function() {
+            queue_list =  queue_list_template();
+            this.$el.html(queue_list);
+            return this;
         }
     });
 
     Queue.Views.CondensedQueueView = Backbone.View.extend({
-        tagName: "div",
+        tagName: "tr",
         className: "queue",
 
         initialize: function() {
