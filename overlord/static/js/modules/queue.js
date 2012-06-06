@@ -22,15 +22,13 @@
         className: "queues",
 
         initialize: function() {
-            that = this;
-            that.id = "2";
-            queues.fetch({success: function() {
+            queues.fetch({success: _.bind(function() {
                 queues.each(function(queue) {
                     var model = new Queue.Model(queue.toJSON());
                     var queue_view = new Queue.Views.CondensedQueueView({model: model});
-                    that.$(".queue_table tbody").append(queue_view.el);
+                    this.$(".queue_table tbody").append(queue_view.el);
                 });
-            }});
+            }, this)});
         },
 
         render: function() {

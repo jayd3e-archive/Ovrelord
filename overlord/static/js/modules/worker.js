@@ -20,15 +20,13 @@
         className: "workers",
 
         initialize: function() {
-            that = this;
-            that.id = "1";
-            workers.fetch({success: function() {
+            workers.fetch({success: _.bind(function() {
                 workers.each(function(worker) {
                     var model = new Worker.Model(worker.toJSON());
                     var worker_view = new Worker.Views.CondensedWorker({model: model});
-                    that.$(".worker_table tbody").append(worker_view.el);
+                    this.$(".worker_table tbody").append(worker_view.el);
                 });
-            }});
+            }, this)});
         },
 
         render: function() {
